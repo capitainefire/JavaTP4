@@ -9,14 +9,6 @@ package tp4;
  *
  * @author Moi
  */
-public class TP4 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        
-    }
+public class FondsExistant extends Exception{
     
 }

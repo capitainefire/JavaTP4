@@ -21,4 +21,8 @@ public class Instrument {
     public void ajouter(Fonds fonds){
         arrayFonds.add(fonds);
     }
+    
+    ArrayList<Fonds> getArrayFonds(){
+        return arrayFonds;
+    }
 }
