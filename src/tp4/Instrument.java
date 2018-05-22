@@ -6,6 +6,7 @@
 package tp4;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  *
@@ -20,5 +21,13 @@ public class Instrument {
     
     public void ajouter(Fonds fonds){
         arrayFonds.add(fonds);
+    }
+    
+    public void trier()
+    {
+        Comparer compare = new Comparer();
+        
+        arrayFonds.sort((Comparator<? super Fonds>) compare);
+        arrayFonds.forEach(item -> System.out.println(item));
     }
 }

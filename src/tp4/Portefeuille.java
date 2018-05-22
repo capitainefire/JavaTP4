@@ -20,14 +20,6 @@ public class Portefeuille {
         mapInstrument = new HashMap();
     }
     
-    public double rechercheFonds(String cleFonds) throws FondsInexistant{
-        if(mapFonds.get(cleFonds) != null)
-        {
-            return mapFonds.get(cleFonds).getAmount();
-        }
-        else{
-            
-        }
-    }
+
 
 }
