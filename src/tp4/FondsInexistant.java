@@ -9,6 +9,6 @@ package tp4;
  *
  * @author Moi
  */
-public class FondsInexistant {
+public class FondsInexistant extends Exception{
     
 }

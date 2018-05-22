@@ -9,6 +9,6 @@ package tp4;
  *
  * @author Moi
  */
-public class InstrumentInexistant {
+public class InstrumentInexistant extends Exception{
     
 }
