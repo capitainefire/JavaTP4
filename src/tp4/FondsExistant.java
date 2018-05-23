@@ -10,5 +10,8 @@ package tp4;
  * @author Moi
  */
 public class FondsExistant extends Exception{
-    
+    FondsExistant()
+    {
+        System.out.println ("Fond déjà existant");
+    }
 }

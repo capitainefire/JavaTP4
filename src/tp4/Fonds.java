@@ -11,14 +11,17 @@ package tp4;
  */
 public class Fonds {
     private double amount;
+    private String cle;
     
     public Fonds()
     {
         amount = 0;
+        cle = "";
     }
     
-    public Fonds(double amount1){
+    public Fonds(double amount1, String key){
         amount = amount1;
+        cle = key;
     }
     
     double getAmount(){

@@ -10,5 +10,8 @@ package tp4;
  * @author Moi
  */
 public class FondsInexistant extends Exception{
-    
+    FondsInexistant()
+    {
+        System.out.println ("Fond inexistant");
+    }
 }

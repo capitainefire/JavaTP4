@@ -10,5 +10,8 @@ package tp4;
  * @author Moi
  */
 public class InstrumentInexistant extends Exception{
-    
+    InstrumentInexistant()
+    {
+        System.out.println ("Instrument Inexistant");
+    }
 }
