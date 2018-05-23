@@ -29,8 +29,10 @@ public class Instrument {
         
         arrayFonds.sort((Comparator<? super Fonds>) compare);
         arrayFonds.forEach(item -> System.out.println(item));
-
-    ArrayList<Fonds> getArrayFonds(){
+    }
+    
+    public ArrayList<Fonds> getArrayFonds(){
         return arrayFonds;
+    }
 
 }
