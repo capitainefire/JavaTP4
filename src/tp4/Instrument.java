@@ -14,13 +14,16 @@ import java.util.Comparator;
  */
 public class Instrument {
     private ArrayList<Fonds> arrayFonds;
+    private String cle;
     
     public Instrument(){
         arrayFonds = new ArrayList<Fonds>();
+        cle = "";
     }
     
-    public void ajouter(Fonds fonds){
+    public void ajouter(Fonds fonds, String key){
         arrayFonds.add(fonds);
+        cle = key;
     }
    
     public void trier()

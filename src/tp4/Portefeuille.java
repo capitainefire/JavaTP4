@@ -47,7 +47,7 @@ public class Portefeuille {
     {
         if(mapFonds.get(cleFonds) == null)
         {
-            Fonds tmpFonds = new Fonds(montantFonds);
+            Fonds tmpFonds = new Fonds(montantFonds, cleFonds);
             mapFonds.put(cleFonds,tmpFonds);
         }
         else {
@@ -57,7 +57,7 @@ public class Portefeuille {
     
     public void ajouterFdansI(String cleInstrument, Fonds nouveauFonds)
     {
-        mapInstrument.get(cleInstrument).ajouter(nouveauFonds);
+        mapInstrument.get(cleInstrument).ajouter(nouveauFonds, cleInstrument);
     }
     
     public void supprimerFonds(String cleFonds) throws FondsInexistant

@@ -5,6 +5,10 @@
  */
 package tp4;
 
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Amandine
@@ -13,8 +17,38 @@ public class Gestion {
     /** main
      * @param args */
     public static void main(String[] args) {
+        Portefeuille portefeuille = new Portefeuille();
+        Scanner clavier;
+        String cle = "";
+        double fonds = 0;
+        System.out.print("Entrez la clé :");
+        clavier = new Scanner(System.in);
+        cle = clavier.nextLine();
+        System.out.print("Entrez le montant :");
+        clavier = new Scanner(System.in);
+        fonds = clavier.nextDouble();
+        
+        try {
+            portefeuille.ajouterFdansF("a", 10);
+            portefeuille.ajouterFdansF("b", 20);
+        } catch (FondsExistant ex) {
+            Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        
+        try {
+            portefeuille.rechercheFonds(cle);
+            FondsExistant e = new FondsExistant();
+        } catch (FondsInexistant ex) {
+            try {
+                portefeuille.ajouterFdansF(cle, fonds);
+            } catch (FondsExistant ex1) {
+                ex1 = new FondsExistant();
+            }
+        }
+        
+        
         Instrument instrument = new Instrument();
-        instrument.trier();
+        //instrument.trier();
     }
 
 }
