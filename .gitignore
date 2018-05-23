@@ -23,3 +23,12 @@
 hs_err_pid*
 /build/
 /dist/
+*.properties
+*.properties
+src/tp4/build/classes/.netbeans_automatic_build
+*.properties
+nbproject/private/private.properties
+src/tp4/build/classes/.netbeans_update_resources
+*.xml
+nbproject/private/private.properties
+src/tp4/nbproject/private/private.xml
