@@ -65,5 +65,13 @@ public class Portefeuille {
         rechercheFonds(cleFonds);
         mapFonds.remove(cleFonds);        
     }
+    
+    
+    public HashMap<String, Fonds> getMapFonds() {
+        return mapFonds;
+    }
 
+    public HashMap<String, Instrument> getMapInstrument() {
+        return mapInstrument;
+    }
 }
