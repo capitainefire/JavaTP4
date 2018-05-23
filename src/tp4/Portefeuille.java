@@ -57,9 +57,13 @@ public class Portefeuille {
     
     public void ajouterFdansI(String cleInstrument, Fonds nouveauFonds)
     {
-        
-        mapInstrument.put(cleInstrument, nouveauFonds);
-        
+        mapInstrument.get(cleInstrument).ajouter(nouveauFonds);
+    }
+    
+    public void supprimerFonds(String cleFonds) throws FondsInexistant
+    {
+        rechercheFonds(cleFonds);
+        mapFonds.remove(cleFonds);        
     }
 
 }
