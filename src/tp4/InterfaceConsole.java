@@ -15,19 +15,20 @@ import java.util.Set;
 public class InterfaceConsole {
     public void afficherInstrument(Portefeuille portefeuille)
     {
-        Set cles = portefeuille.getMapInstrument().keySet();
-        Iterator it = cles.iterator();
+        Set<String> cles = portefeuille.getMapInstrument().keySet();
+        Iterator<String> it = cles.iterator();
+        String iter = "";
         
         while(it.hasNext())
         {
-            double cpt = 0;
+            iter = it.next();
+            System.out.println("La cle est : " + iter);
+            Instrument valeur = portefeuille.getMapInstrument().get(iter);
             
-            String cle = (String) it.next();
-            Instrument valeur = portefeuille.getMapInstrument().get(cle);
-            
-            System.out.println("La cle est : " + cle);
             System.out.println("Le nombre total de fonds est : " + valeur.getArrayFonds().size());
             
+            double cpt = 0;
+                        
             for(int i=0; i< valeur.getArrayFonds().size();i++)
             {
                 cpt += valeur.getArrayFonds().get(i).getAmount();
