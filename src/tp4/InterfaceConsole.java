@@ -7,6 +7,8 @@ package tp4;
 
 import java.util.Iterator;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,10 +46,50 @@ public class InterfaceConsole {
         
     }
     
-    public int rechercher(String cleFonds)
+    public int rechercher(String cleFonds, Portefeuille portefeuille)
     {
-        int untruc = 0;
-        return untruc;
+        try {
+            portefeuille.rechercheFonds(cleFonds);
+        } catch (FondsInexistant ex) {
+            Logger.getLogger(InterfaceConsole.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Set<String> cles = portefeuille.getMapInstrument().keySet();
+        Iterator<String> it = cles.iterator();
+        String iter = "";
+        
+        while(it.hasNext())
+        {
+            iter = it.next();
+            Instrument valeur = portefeuille.getMapInstrument().get(iter);
+            
+            // rechercher fond dans instrument
+            // fonction a coder dans instrument
+            if()
+            {
+                double cpt = 0;
+                
+                // Somme
+                for(int i=0; i< valeur.getArrayFonds().size();i++)
+                {
+                    cpt += valeur.getArrayFonds().get(i).getAmount();
+                }
+                
+            }
+
+            System.out.println("La cle est : " + iter);
+            Instrument valeur = portefeuille.getMapInstrument().get(iter);
+            
+            System.out.println("Le nombre total de fonds est : " + valeur.getArrayFonds().size());
+            
+            double cpt = 0;
+                        
+            for(int i=0; i< valeur.getArrayFonds().size();i++)
+            {
+                cpt += valeur.getArrayFonds().get(i).getAmount();
+            }
+            System.out.println("La somme totale des motants des fonds est : " + cpt);
+        }
     }
     
 }
