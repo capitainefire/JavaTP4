@@ -23,7 +23,7 @@ public class Gestion {
         Scanner clavier;
         String cle = "";
         double fonds = 0;
-        System.out.print("Entrez la cle : ");
+        System.out.print("Entrez la cle pour le fond : ");
         clavier = new Scanner(System.in);
         cle = clavier.nextLine();
         System.out.print("Entrez le montant : ");
@@ -59,6 +59,19 @@ public class Gestion {
             System.out.println("La cle est : " + iter);
             System.out.println("amount : " + portefeuille.getMapFonds().get(iter).getAmount());
         }
+        
+        String cleI;
+        System.out.print("Entrez la cle pour l'instrument : ");
+        clavier = new Scanner(System.in);
+        cleI = clavier.nextLine();   
+        
+        try {
+            portefeuille.rechercheInstrument(cleI);
+        } catch (InstrumentInexistant ex2) {
+            Instrument tmpInstru = new Instrument(cleI);
+            portefeuille.ajouterIdansI(cleI, tmpInstru);
+        }
+        portefeuille.getMapInstrument().get(cleI).ajouter(portefeuille.getMapFonds().get(cle));
         
         
         Instrument instrument = new Instrument();

@@ -21,9 +21,13 @@ public class Instrument {
         cle = "";
     }
     
-    public void ajouter(Fonds fonds, String key){
-        arrayFonds.add(fonds);
+    public Instrument(String key){
+        arrayFonds = new ArrayList<Fonds>();
         cle = key;
+    }
+    
+    public void ajouter(Fonds fonds){
+        arrayFonds.add(fonds);
     }
    
     public void trier()
