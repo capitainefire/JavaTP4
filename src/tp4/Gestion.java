@@ -48,14 +48,16 @@ public class Gestion {
             }
         }
         
-        Set cles = portefeuille.getMapFonds().keySet();
-        Iterator it = cles.iterator();
+        Set<String> cles = portefeuille.getMapFonds().keySet();
+        System.out.println("Taille du set : " + cles.size());
+        Iterator<String> it = cles.iterator();
+        String iter = "";
         
         while(it.hasNext())
         {
-            System.out.println("La cle est : " + cle);
-            System.out.println("amount : " + portefeuille.getMapFonds().get(cle).getAmount());
-            
+            iter = it.next();
+            System.out.println("La cle est : " + iter);
+            System.out.println("amount : " + portefeuille.getMapFonds().get(iter).getAmount());
         }
         
         
