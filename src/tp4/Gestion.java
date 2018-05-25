@@ -74,6 +74,9 @@ public class Gestion {
         portefeuille.getMapInstrument().get(cleI).ajouter(portefeuille.getMapFonds().get(cle));
         
         
+        InterfaceConsole console = new InterfaceConsole();
+        console.afficherInstrument(portefeuille);
+        
         Instrument instrument = new Instrument();
         //instrument.trier();
     }

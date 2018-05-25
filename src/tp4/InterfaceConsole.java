@@ -13,6 +13,12 @@ import java.util.Set;
  * @author Moi
  */
 public class InterfaceConsole {
+    
+    public InterfaceConsole()
+    {
+        
+    }
+    
     public void afficherInstrument(Portefeuille portefeuille)
     {
         Set<String> cles = portefeuille.getMapInstrument().keySet();
