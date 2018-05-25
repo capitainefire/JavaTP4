@@ -5,7 +5,9 @@
  */
 package tp4;
 
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,6 +46,16 @@ public class Gestion {
             } catch (FondsExistant ex1) {
                 ex1 = new FondsExistant();
             }
+        }
+        
+        Set cles = portefeuille.getMapFonds().keySet();
+        Iterator it = cles.iterator();
+        
+        while(it.hasNext())
+        {
+            System.out.println("La cle est : " + cle);
+            System.out.println("amount : " + portefeuille.getMapFonds().get(cle).getAmount());
+            
         }
         
         
