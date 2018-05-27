@@ -6,12 +6,15 @@
 package vue;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.FondsInexistant;
 import modele.Instrument;
 import modele.Portefeuille;
+import modele.Fonds;
+import modele.InstrumentInexistant;
 
 /**
  *
@@ -48,6 +51,39 @@ public class InterfaceConsole {
         }
         
     }
+    
+    /** Afficher fonds d'un instrument ordonné*/
+    public void AfficheFondsTrie(Portefeuille portefeuille, String cle){
+        
+        try {
+            portefeuille.rechercheInstrument(cle);
+            
+            Map <String,Instrument> map = portefeuille.getMapInstrument();
+            Iterator iterator = map.entrySet().iterator();
+            
+            while (iterator.hasNext()) {
+		Map.Entry entry = (Map.Entry) iterator.next();
+		 Instrument Instrument = (Instrument) entry.getValue();
+                
+                 if(Instrument.getCle().equals(cle))
+                 {
+                     Instrument.trier();
+                     System.out.println("Voici les fonds de l'instrument " + cle + " :");
+                     
+                     Instrument.getArrayFonds()
+                             .forEach((fonds) -> {
+                                 System.out.println("Fonds " + fonds.getKey() + " de montant : " + fonds.getAmount());
+                    });
+                 }
+                
+            
+	}
+            
+        } catch (InstrumentInexistant ex) {
+            System.out.println("Impossible d'ordonner l'Instrument");
+        }
+    }
+    
     
     public void rechercher(String cleFonds, Portefeuille portefeuille)
     {

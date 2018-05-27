@@ -6,6 +6,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -32,10 +33,8 @@ public class Instrument {
    
     public void trier()
     {
-        Comparer compare = new Comparer();
-        
-        arrayFonds.sort((Comparator<? super Fonds>) compare);
-        arrayFonds.forEach(item -> System.out.println(item));
+       // Fonds d'un instrument tries par montant
+        Collections.sort(arrayFonds);
     }
     
     public boolean rechercherFdansI(String cleFonds)
@@ -55,4 +54,7 @@ public class Instrument {
         return arrayFonds;
     }
 
+    public String getCle() {
+        return cle;
+    }
 }

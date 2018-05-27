@@ -108,7 +108,14 @@ public class Gestion {
         
         console.rechercher(cleRecherche, portefeuille);
         
+        Instrument instrument = new Instrument();
         //instrument.trier();
+        
+        InterfaceConsole vue = new InterfaceConsole();
+        
+        System.out.println("Renter la clé d'un instrument afin d'afficher ses fonds triés : ");
+        String cleAfficheInstrument = clavier.nextLine();
+        vue.AfficheFondsTrie(portefeuille ,cleAfficheInstrument);
     }
 
 }
