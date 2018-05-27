@@ -10,6 +10,12 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modele.FondsExistant;
+import modele.FondsInexistant;
+import modele.Instrument;
+import modele.InstrumentInexistant;
+import modele.Portefeuille;
+import vue.InterfaceConsole;
 
 /**
  *

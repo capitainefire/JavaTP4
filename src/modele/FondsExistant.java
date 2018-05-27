@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp4;
+package modele;
 
 /**
  *
  * @author Moi
  */
 public class FondsExistant extends Exception{
-    FondsExistant()
+    public FondsExistant()
     {
         System.out.println ("Fond déjà existant");
     }
