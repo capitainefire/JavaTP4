@@ -23,7 +23,7 @@ public class Gestion {
         Scanner clavier;
         String cle = "";
         double fonds = 0;
-        System.out.print("Entrez la cle pour le fond : ");
+        System.out.print("Entrez la cle pour le fonds : ");
         clavier = new Scanner(System.in);
         cle = clavier.nextLine();
         System.out.print("Entrez le montant : ");

@@ -24,8 +24,13 @@ public class Fonds {
         cle = key;
     }
     
-    double getAmount(){
+    public double getAmount(){
         return amount;
+    }
+    
+    public String  getKey()
+    {
+        return cle;
     }
     
 }

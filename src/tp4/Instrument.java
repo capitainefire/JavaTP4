@@ -38,6 +38,19 @@ public class Instrument {
         arrayFonds.forEach(item -> System.out.println(item));
     }
     
+    public boolean rechercherFdansI(String cleFonds)
+    {
+        boolean Dedans = false;
+        for (int i = 0; i < arrayFonds.size(); i++)
+        {
+            if(arrayFonds.get(i).getKey() == cleFonds)
+            {
+                Dedans = true;
+            }
+        }
+        return Dedans;
+    }
+    
     public ArrayList<Fonds> getArrayFonds(){
         return arrayFonds;
     }
