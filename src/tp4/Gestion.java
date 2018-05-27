@@ -19,23 +19,38 @@ public class Gestion {
     /** main
      * @param args */
     public static void main(String[] args) {
+        
         Portefeuille portefeuille = new Portefeuille();
         Scanner clavier;
         String cle = "";
         double fonds = 0;
+        
+        try {
+            portefeuille.ajouterFdansF("a", 10);
+            portefeuille.ajouterFdansF("b", 20);
+            portefeuille.ajouterFdansF("c", 30);
+            portefeuille.ajouterFdansF("d", 40);
+        } catch (FondsExistant ex) {
+            Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        
+        Instrument A = new Instrument("InstruA");
+        portefeuille.ajouterIdansI("InstruA", A);
+        Instrument B = new Instrument("InstruB");
+        portefeuille.ajouterIdansI("InstruB", B);
+        
+        portefeuille.ajouterFdansI("InstruA", portefeuille.getMapFonds().get("a"));
+        portefeuille.ajouterFdansI("InstruA", portefeuille.getMapFonds().get("b"));
+        portefeuille.ajouterFdansI("InstruA", portefeuille.getMapFonds().get("c"));
+        portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get("b"));
+        portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get("d"));
+        
         System.out.print("Entrez la cle pour le fonds : ");
         clavier = new Scanner(System.in);
         cle = clavier.nextLine();
         System.out.print("Entrez le montant : ");
         clavier = new Scanner(System.in);
         fonds = clavier.nextDouble();
-        
-        try {
-            portefeuille.ajouterFdansF("a", 10);
-            portefeuille.ajouterFdansF("b", 20);
-        } catch (FondsExistant ex) {
-            Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
-        }        
         
         try {
             portefeuille.rechercheFonds(cle);
@@ -47,6 +62,8 @@ public class Gestion {
                 ex1 = new FondsExistant();
             }
         }
+        
+        portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get(cle));
         
         Set<String> cles = portefeuille.getMapFonds().keySet();
         System.out.println("Taille du set : " + cles.size());
@@ -77,7 +94,14 @@ public class Gestion {
         InterfaceConsole console = new InterfaceConsole();
         console.afficherInstrument(portefeuille);
         
-        Instrument instrument = new Instrument();
+        System.out.println("");
+        String cleRecherche;
+        System.out.print("Entrez la cle du fonds dont vous voulez connaitre le pourcentage dans chaque instrument : ");
+        clavier = new Scanner(System.in);
+        cleRecherche = clavier.nextLine();
+        
+        console.rechercher(cleRecherche, portefeuille);
+        
         //instrument.trier();
     }
 

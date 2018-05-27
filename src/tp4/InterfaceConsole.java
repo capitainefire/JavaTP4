@@ -46,7 +46,7 @@ public class InterfaceConsole {
         
     }
     
-    public double rechercher(String cleFonds, Portefeuille portefeuille)
+    public void rechercher(String cleFonds, Portefeuille portefeuille)
     {
         double pourcentage = 0;
         try {
@@ -64,20 +64,19 @@ public class InterfaceConsole {
             iter = it.next();
             Instrument valeur = portefeuille.getMapInstrument().get(iter);
             double cpt = 0;
-            
+            pourcentage = 0;
             if(valeur.rechercherFdansI(cleFonds))
-            {                
+            {
                 // Somme
                 for(int i=0; i< valeur.getArrayFonds().size();i++)
                 {
                     cpt += valeur.getArrayFonds().get(i).getAmount();
                 }
-                
-            }
-            pourcentage = (portefeuille.getMapFonds().get(cleFonds).getAmount()/cpt)*100;
-            System.out.println("Le pourcentage du fonds " + cleFonds + " dans l'instrument " + iter + " est de : " + pourcentage);
+                pourcentage = portefeuille.getMapFonds().get(cleFonds).getAmount();
+                pourcentage = (pourcentage/cpt)*100;
+                System.out.println("Le pourcentage du fonds " + cleFonds + " dans l'instrument " + iter + " est de : " + pourcentage);
+            }  
         }
-        return pourcentage;
     }
     
 }

@@ -43,7 +43,7 @@ public class Instrument {
         boolean Dedans = false;
         for (int i = 0; i < arrayFonds.size(); i++)
         {
-            if(arrayFonds.get(i).getKey() == cleFonds)
+            if(arrayFonds.get(i).getKey().equals(cleFonds))
             {
                 Dedans = true;
             }
