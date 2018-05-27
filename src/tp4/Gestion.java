@@ -66,6 +66,7 @@ public class Gestion {
                 portefeuille.ajouterFdansF(cle, fonds);
             } catch (FondsExistant ex1) {
                 ex1 = new FondsExistant();
+                System.out.println("Le fonds n'a donc pas été créé.");
             }
         }
         
@@ -90,6 +91,7 @@ public class Gestion {
         
         try {
             portefeuille.rechercheInstrument(cleI);
+            System.out.println("Cet instrument existe déjà.");
         } catch (InstrumentInexistant ex2) {
             Instrument tmpInstru = new Instrument(cleI);
             portefeuille.ajouterIdansI(cleI, tmpInstru);
