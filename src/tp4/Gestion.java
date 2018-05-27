@@ -113,7 +113,7 @@ public class Gestion {
         
         InterfaceConsole vue = new InterfaceConsole();
         
-        System.out.println("Renter la clé d'un instrument afin d'afficher ses fonds triés : ");
+        System.out.println("Rentrer la clé d'un instrument afin d'afficher ses fonds triés : ");
         String cleAfficheInstrument = clavier.nextLine();
         vue.AfficheFondsTrie(portefeuille ,cleAfficheInstrument);
     }
