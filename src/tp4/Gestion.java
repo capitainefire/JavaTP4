@@ -107,8 +107,7 @@ public class Gestion {
         cleRecherche = clavier.nextLine();
         
         console.rechercher(cleRecherche, portefeuille);
-        
-        Instrument instrument = new Instrument();
+
         //instrument.trier();
         
         InterfaceConsole vue = new InterfaceConsole();
@@ -116,6 +115,30 @@ public class Gestion {
         System.out.println("Rentrer la clé d'un instrument afin d'afficher ses fonds triés : ");
         String cleAfficheInstrument = clavier.nextLine();
         vue.AfficheFondsTrie(portefeuille ,cleAfficheInstrument);
+        
+        System.out.println("Rentrer la clé d'un fond que vous voulez supprimer : ");
+        clavier = new Scanner(System.in);
+        String cleSuppr = clavier.nextLine();
+        portefeuille.supprimerFonds(cleSuppr);
+        
+        System.out.println("Rentrer la clé d'un instrument que vous voulez supprimer : ");
+        clavier = new Scanner(System.in);
+        String cleISuppr = clavier.nextLine();
+        portefeuille.supprimerInstrument(cleISuppr);
+        
+        System.out.println("Affichage des fonds");
+        cles = portefeuille.getMapFonds().keySet();
+        System.out.println("Taille du set : " + cles.size());
+        it = cles.iterator();
+        iter = "";
+        
+        while(it.hasNext())
+        {
+            iter = it.next();
+            System.out.println("La cle est : " + iter);
+        }
+        System.out.println("Affichage des instruments");
+        console.afficherInstrument(portefeuille);
     }
 
 }

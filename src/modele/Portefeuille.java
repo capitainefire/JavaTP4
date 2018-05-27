@@ -7,6 +7,8 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,10 +67,24 @@ public class Portefeuille {
         mapInstrument.put(cleInstrument, nouveauInstrument);
     }
     
-    public void supprimerFonds(String cleFonds) throws FondsInexistant
+    public void supprimerFonds(String cleFonds)
     {
-        rechercheFonds(cleFonds);
-        mapFonds.remove(cleFonds);        
+        try {
+            rechercheFonds(cleFonds);
+            mapFonds.remove(cleFonds);
+        } catch (FondsInexistant ex) {
+            
+        }      
+    }
+    
+    public void supprimerInstrument(String cleInstru)
+    {
+        try {
+            rechercheInstrument(cleInstru).clear();
+            mapInstrument.remove(cleInstru);
+        } catch (InstrumentInexistant ex) {
+            ex = new InstrumentInexistant();
+        }
     }
     
     
