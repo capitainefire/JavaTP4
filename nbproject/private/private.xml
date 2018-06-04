@@ -3,19 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/tp4/Gestion.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/modele/Instrument.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/modele/FondsExistant.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/vue/InterfaceConsole.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/modele/InstrumentInexistant.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/modele/Serie.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/modele/Portefeuille.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/modele/Fonds.java</file>
-            <file>file:/C:/Users/Moi/Documents/GitHub/JavaTP4/src/modele/FondsInexistant.java</file>
-=======
+            <file>file:/C:/Users/Amandine/Desktop/ING%203/ECE/POO%20Java/TP/TP4/JavaTP4/src/modele/FondsInexistant.java</file>
+            <file>file:/C:/Users/Amandine/Desktop/ING%203/ECE/POO%20Java/TP/TP4/JavaTP4/src/vue/InterfaceConsole.java</file>
+            <file>file:/C:/Users/Amandine/Desktop/ING%203/ECE/POO%20Java/TP/TP4/JavaTP4/src/tp4/Gestion.java</file>
+            <file>file:/C:/Users/Amandine/Desktop/ING%203/ECE/POO%20Java/TP/TP4/JavaTP4/src/modele/Portefeuille.java</file>
             <file>file:/C:/Users/Amandine/Desktop/ING%203/ECE/POO%20Java/TP/TP4/JavaTP4/src/vue/InterfaceGraphique.java</file>
->>>>>>> b75d205739e2e3789b0c47ed4cd081feeadad439
+            <file>file:/C:/Users/Amandine/Desktop/ING%203/ECE/POO%20Java/TP/TP4/JavaTP4/src/modele/Instrument.java</file>
         </group>
     </open-files>
 </project-private>
