@@ -15,6 +15,7 @@ import modele.FondsInexistant;
 import modele.Instrument;
 import modele.InstrumentInexistant;
 import modele.Portefeuille;
+import modele.Serie;
 import vue.InterfaceConsole;
 
 /**
@@ -27,6 +28,7 @@ public class Gestion {
     public static void main(String[] args) {
         
         Portefeuille portefeuille = new Portefeuille();
+        Serie serie = new Serie();
         Scanner clavier;
         String cle = "";
         double fonds = 0;
