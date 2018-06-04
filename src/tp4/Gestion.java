@@ -31,6 +31,7 @@ public class Gestion {
         String cle = "";
         double fonds = 0;
         
+        //Ajout de fonds et d'instruments test
         try {
             portefeuille.ajouterFdansF("a", 10);
             portefeuille.ajouterFdansF("b", 20);
@@ -51,6 +52,7 @@ public class Gestion {
         portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get("b"));
         portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get("d"));
         
+        //Ajout d'un fond par l'utilisateur
         System.out.print("Entrez la cle pour le fonds : ");
         clavier = new Scanner(System.in);
         cle = clavier.nextLine();
@@ -72,6 +74,7 @@ public class Gestion {
         
         portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get(cle));
         
+        //Affichage des fonds
         Set<String> cles = portefeuille.getMapFonds().keySet();
         System.out.println("Taille du set : " + cles.size());
         Iterator<String> it = cles.iterator();
@@ -84,6 +87,7 @@ public class Gestion {
             System.out.println("amount : " + portefeuille.getMapFonds().get(iter).getAmount());
         }
         
+        //Création d'un nouvel instrument par l'utilisateur
         String cleI;
         System.out.print("Entrez la cle pour l'instrument : ");
         clavier = new Scanner(System.in);
@@ -98,7 +102,7 @@ public class Gestion {
         }
         portefeuille.getMapInstrument().get(cleI).ajouter(portefeuille.getMapFonds().get(cle));
         
-        
+        //Affichage des instruments
         InterfaceConsole console = new InterfaceConsole();
         console.afficherInstrument(portefeuille);
         
@@ -108,9 +112,7 @@ public class Gestion {
         clavier = new Scanner(System.in);
         cleRecherche = clavier.nextLine();
         
-        console.rechercher(cleRecherche, portefeuille);
-
-        //instrument.trier();
+        console.rechercher(cleRecherche, portefeuille);        
         
         InterfaceConsole vue = new InterfaceConsole();
         

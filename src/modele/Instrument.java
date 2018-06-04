@@ -5,6 +5,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,7 +14,7 @@ import java.util.Comparator;
  *
  * @author Moi
  */
-public class Instrument {
+public class Instrument implements Serializable {
     private ArrayList<Fonds> arrayFonds;
     private String cle;
     

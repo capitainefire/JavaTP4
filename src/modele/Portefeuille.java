@@ -5,6 +5,7 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Moi
  */
-public class Portefeuille {
+public class Portefeuille implements Serializable {
     private HashMap<String, Fonds> mapFonds;
     private HashMap<String, Instrument> mapInstrument;
     
