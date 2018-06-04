@@ -8,6 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
+import modele.Instrument;
+import modele.InstrumentInexistant;
+import modele.Portefeuille;
 
 /**
  *
@@ -17,6 +21,8 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
 
     private JPanel pan;
     private JButton bouton[];
+    private Scanner clavier = new Scanner(System.in);
+    private Portefeuille portefeuille = new Portefeuille();
     
     public InterfaceGraphique()
     {
@@ -79,15 +85,26 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
         // Si la source de l action est l activation du bouton 0
         if (e.getSource() == bouton[0]) 
         {
-            bouton[0].setText("Vous avez appuyer sur le Bouton 1");
+            bouton[0].setText("Vous avez appuyer sur le bouton 1");
         }
         
         // Si la source de l action est lactivation du bouton 1
         if (e.getSource() == bouton[1])
         {
-            //On affiche ce que l'utilisateur a écrit
-            bouton[1].setText("Vous avez écrit : " + truc);
+            String cleI;
+            System.out.println("Entrez la cle pour l'instrument : ");
+            cleI = clavier.nextLine();   
+        
+            try {
+                portefeuille.rechercheInstrument(cleI);
+                System.out.println("Cet instrument existe déjà.");
+            } catch (InstrumentInexistant ex2) {
+                Instrument tmpInstru = new Instrument(cleI);
+                portefeuille.ajouterIdansI(cleI, tmpInstru);
+            }
+            
+                bouton[1].setText("Vous avez appuyer sur le bouton 2");
         }
     }
-    
+
 }
