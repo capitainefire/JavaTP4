@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
+import javax.swing.border.TitledBorder;
 import modele.Instrument;
 import modele.InstrumentInexistant;
 import modele.Portefeuille;
@@ -20,6 +21,8 @@ import modele.Portefeuille;
 public class InterfaceGraphique extends JFrame implements ActionListener {
 
     private JPanel pan;
+    private JPanel panajoutf;
+    
     private JButton bouton[];
     private Scanner clavier = new Scanner(System.in);
     private Portefeuille portefeuille = new Portefeuille();
@@ -83,13 +86,35 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e)
     {
         // Si la source de l action est l activation du bouton 0
+        // Serialiser le portefeuille dans un fichier
         if (e.getSource() == bouton[0]) 
         {
-            bouton[0].setText("Vous avez appuyer sur le bouton 1");
+            bouton[0].setText("Vous avez appuyer sur le bouton 0");
         }
         
-        // Si la source de l action est lactivation du bouton 1
-        if (e.getSource() == bouton[1])
+        
+        
+        // Si la source de l action est l activation du bouton 1
+        // De-serialiser les objets du portefeuille d un fichier
+        if (e.getSource() == bouton[1]) 
+        {
+            bouton[1].setText("Vous avez appuyer sur le bouton 1");
+        }
+        
+  
+        
+        // Si la source de l action est l activation du bouton 2
+        // Recherche d'un fond
+        if (e.getSource() == bouton[2]) 
+        {
+            bouton[2].setText("Vous avez appuyer sur le bouton 2");
+        }
+        
+        
+        
+        // Si la source de l action est lactivation du bouton 3
+        // Recherche d'un instrument
+        if (e.getSource() == bouton[3])
         {
             String cleI;
             System.out.println("Entrez la cle pour l'instrument : ");
@@ -97,13 +122,32 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
         
             try {
                 portefeuille.rechercheInstrument(cleI);
-                System.out.println("Cet instrument existe déjà.");
+                for(int i=0; i<portefeuille.rechercheInstrument(cleI).size(); i++)
+                {
+                    //bouton[1].setText(portefeuille.rechercheInstrument(cleI)[i]);
+                }
+                
             } catch (InstrumentInexistant ex2) {
-                Instrument tmpInstru = new Instrument(cleI);
-                portefeuille.ajouterIdansI(cleI, tmpInstru);
-            }
-            
-                bouton[1].setText("Vous avez appuyer sur le bouton 2");
+                
+            } 
+        }
+        
+        
+        
+         // Si la source de l action est l activation du bouton 4
+        // Ajout d un fond
+        if (e.getSource() == bouton[4]) 
+        {
+            //le "PAGE_AXIS" permet d'afficher tout a la suite verticalement
+            //pour tout afficher horizontalement c'est LINE_AXIS
+            setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
+            //Rectangle Informations
+            panajoutf = new JPanel();
+            panajoutf.setLayout(new BoxLayout(panajoutf, BoxLayout.PAGE_AXIS));
+            panajoutf.setBorder(new TitledBorder(null, "Ajout d'un fond", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+            panajoutf.setPreferredSize(new Dimension(this.getWidth(), 300));       
+            panajoutf.setBackground(new Color(187,164,230));
         }
     }
 

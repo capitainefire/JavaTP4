@@ -17,6 +17,7 @@ import modele.InstrumentInexistant;
 import modele.Portefeuille;
 import modele.Serie;
 import vue.InterfaceConsole;
+import vue.InterfaceGraphique;
 
 /**
  *
@@ -26,6 +27,8 @@ public class Gestion {
     /** main
      * @param args */
     public static void main(String[] args) {
+        
+        InterfaceGraphique intergraph = new InterfaceGraphique();
         
         Portefeuille portefeuille = new Portefeuille();
         Serie serie = new Serie();
