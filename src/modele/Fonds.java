@@ -5,11 +5,13 @@
  */
 package modele;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Moi
  */
-public class Fonds implements Comparable<Fonds>{
+public class Fonds implements Comparable<Fonds>, Serializable {
     private double amount;
     private String cle;
     
