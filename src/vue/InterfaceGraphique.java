@@ -8,11 +8,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.border.TitledBorder;
+import modele.Fonds;
+import modele.FondsInexistant;
 import modele.Instrument;
 import modele.InstrumentInexistant;
 import modele.Portefeuille;
+import modele.Serie;
 
 /**
  *
@@ -25,10 +32,14 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
     
     private JButton bouton[];
     private Scanner clavier = new Scanner(System.in);
-    private Portefeuille portefeuille = new Portefeuille();
+    private Portefeuille portefeuille;
+    private Serie serie;
     
-    public InterfaceGraphique()
+    public InterfaceGraphique(Portefeuille Pportefeuille, Serie Pserie)
     {
+        portefeuille = Pportefeuille;
+        serie = Pserie;
+        
         // Titre
         this.setTitle("Menu");
         
@@ -40,6 +51,7 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
 
         // On instancie un objet JPanel
         pan = new JPanel();
+        pan.setLayout(new GridLayout(10,1));
         
         // On instancie nos bouton
         bouton = new JButton[10];
@@ -89,7 +101,13 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
         // Serialiser le portefeuille dans un fichier
         if (e.getSource() == bouton[0]) 
         {
-            bouton[0].setText("Vous avez appuyer sur le bouton 0");
+            try {
+                serie.Ecrire(portefeuille);
+            } catch (IOException ex) {
+                Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane pan2 = new JOptionPane();
+            pan2.showMessageDialog(null, "Sérialisation des 2 Hashmaps", "Sérialisation ", JOptionPane.INFORMATION_MESSAGE);
         }
         
         
@@ -107,29 +125,38 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
         // Recherche d'un fond
         if (e.getSource() == bouton[2]) 
         {
-            bouton[2].setText("Vous avez appuyer sur le bouton 2");
+            JOptionPane pan2 = new JOptionPane();
+            JOptionPane pan21 = new JOptionPane();
+            String nom = pan2.showInputDialog(null, "Veuillez saisir la clé du fond que vous recherchez : ", JOptionPane.QUESTION_MESSAGE);
+            try {
+                double montant = portefeuille.rechercheFonds(nom);
+                pan21.showMessageDialog(null, "Valeur de ce fonds " + montant, "Fonds " + nom, JOptionPane.INFORMATION_MESSAGE);
+            } catch (FondsInexistant ex) {
+                pan21.showMessageDialog(null, "Le fonds n'a pas été trouvé", "Fonds inexistant", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        
         
         
         // Si la source de l action est lactivation du bouton 3
         // Recherche d'un instrument
         if (e.getSource() == bouton[3])
         {
-            String cleI;
-            System.out.println("Entrez la cle pour l'instrument : ");
-            cleI = clavier.nextLine();   
-        
+            JOptionPane pan2 = new JOptionPane();
+            JOptionPane pan21 = new JOptionPane();
+            ArrayList<Fonds> ListFonds;
+            String fonds = "";
+            String nom = pan2.showInputDialog(null, "Veuillez saisir la clé de l'instrument que vous recherchez : ", JOptionPane.QUESTION_MESSAGE);
             try {
-                portefeuille.rechercheInstrument(cleI);
-                for(int i=0; i<portefeuille.rechercheInstrument(cleI).size(); i++)
+                ListFonds = portefeuille.rechercheInstrument(nom);
+                for(int i=0; i<ListFonds.size(); i++)
                 {
-                    //bouton[1].setText(portefeuille.rechercheInstrument(cleI)[i]);
+                    fonds += "Fonds " + ListFonds.get(i).getKey() + " de valeur : " + ListFonds.get(i).getAmount() + "\n";
                 }
-                
-            } catch (InstrumentInexistant ex2) {
-                
-            } 
+                pan21.showMessageDialog(null, fonds, "Instrument " + nom, JOptionPane.INFORMATION_MESSAGE);
+            
+            } catch (InstrumentInexistant ex) {
+                pan21.showMessageDialog(null, "L'instrument n'a pas été trouvé", "Instrument inexistant", JOptionPane.ERROR_MESSAGE);
+            }
         }
         
         
@@ -148,6 +175,11 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
             panajoutf.setBorder(new TitledBorder(null, "Ajout d'un fond", TitledBorder.LEADING, TitledBorder.TOP, null, null));
             panajoutf.setPreferredSize(new Dimension(this.getWidth(), 300));       
             panajoutf.setBackground(new Color(187,164,230));
+        }
+        
+        if (e.getSource() == bouton[9])
+        {
+            System.exit(0);
         }
     }
 

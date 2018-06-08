@@ -29,14 +29,13 @@ public class Gestion {
      * @param args */
     public static void main(String[] args) {
         
-        InterfaceGraphique intergraph = new InterfaceGraphique();
-        
         Portefeuille portefeuille = new Portefeuille();
         Serie serie = new Serie();
         Scanner clavier;
         String cle = "";
         double fonds = 0;
         InterfaceConsole console = new InterfaceConsole();
+        InterfaceGraphique intergraph = new InterfaceGraphique(portefeuille, serie);
         
         //Ajout de fonds et d'instruments test
         try {
