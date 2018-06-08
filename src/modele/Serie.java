@@ -13,6 +13,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
         
@@ -60,20 +62,21 @@ public class Serie implements Serializable {
     	FileInputStream fis = new FileInputStream("Hashfond.ser");
         ObjectInputStream ois= new ObjectInputStream(fis);
         try {
-            mapFonds = (HashMap) ois.readObject();
-            portefeuille.getMapFonds().clear();
+            mapFonds = (HashMap) ois.readObject();            
+            portefeuille.getMapFonds().clear();  
             portefeuille.getMapFonds().putAll(mapFonds);
+                       
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Serie.class.getName()).log(Level.SEVERE, null, ex);
         }
         ois.close();
         fis.close();
         
-        fis = new FileInputStream("Hashfond.ser");
+        fis = new FileInputStream("HashInstru.ser");
         ois= new ObjectInputStream(fis);
         try {
             mapInstrument = (HashMap) ois.readObject();
-            portefeuille.getMapFonds().clear();
+            portefeuille.getMapInstrument().clear();
             portefeuille.getMapInstrument().putAll(mapInstrument);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Serie.class.getName()).log(Level.SEVERE, null, ex);

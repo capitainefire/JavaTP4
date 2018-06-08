@@ -5,6 +5,7 @@
  */
 package tp4;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
@@ -35,6 +36,7 @@ public class Gestion {
         Scanner clavier;
         String cle = "";
         double fonds = 0;
+        InterfaceConsole console = new InterfaceConsole();
         
         //Ajout de fonds et d'instruments test
         try {
@@ -57,6 +59,7 @@ public class Gestion {
         portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get("b"));
         portefeuille.ajouterFdansI("InstruB", portefeuille.getMapFonds().get("d"));
         
+        /*
         //Ajout d'un fond par l'utilisateur
         System.out.print("Entrez la cle pour le fonds : ");
         clavier = new Scanner(System.in);
@@ -148,6 +151,31 @@ public class Gestion {
         }
         System.out.println("Affichage des instruments");
         console.afficherInstrument(portefeuille);
+        */
+        try{
+            serie.Ecrire(portefeuille);
+            serie.Lire(portefeuille);
+        }
+        catch(IOException lol){
+            
+        }
+        
+        System.out.println("Affichage des fonds");
+        Set<String> cles = portefeuille.getMapFonds().keySet();
+        System.out.println("Taille du set : " + cles.size());
+        Iterator<String> it = cles.iterator();
+        String iter = "";
+        
+        while(it.hasNext())
+        {
+            iter = it.next();
+            System.out.println("La cle est : " + iter);
+            System.out.println("Le montant est : " + portefeuille.getMapFonds().get(iter).getAmount());
+        }
+        System.out.println("Affichage des instruments");
+        console.afficherInstrument(portefeuille);
+        
+        
     }
 
 }
