@@ -10,11 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.border.TitledBorder;
 import modele.Fonds;
+import modele.FondsExistant;
 import modele.FondsInexistant;
 import modele.Instrument;
 import modele.InstrumentInexistant;
@@ -60,7 +63,7 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
         bouton[1] = new JButton("De-serialiser les objets du portefeuille d un fichier");
         bouton[2] = new JButton("Recherche d un fond");
         bouton[3] = new JButton("Recherche d un instrument");
-        bouton[4] = new JButton("Ajout d un fond");
+        bouton[4] = new JButton("Ajout d un nouveau fond dans un instrument");
         bouton[5] = new JButton("Suppression d un fond");
         bouton[6] = new JButton("Ajout d un instrument");
         bouton[7] = new JButton("Suppression d un instrument");
@@ -103,11 +106,11 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
         {
             try {
                 serie.Ecrire(portefeuille);
+                JOptionPane pan2 = new JOptionPane();
+                pan2.showMessageDialog(null, "Sérialisation des 2 Hashmaps", "Sérialisation ", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane pan2 = new JOptionPane();
-            pan2.showMessageDialog(null, "Sérialisation des 2 Hashmaps", "Sérialisation ", JOptionPane.INFORMATION_MESSAGE);
         }
         
         
@@ -116,7 +119,13 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
         // De-serialiser les objets du portefeuille d un fichier
         if (e.getSource() == bouton[1]) 
         {
-            bouton[1].setText("Vous avez appuyer sur le bouton 1");
+            try {
+                serie.Lire(portefeuille);
+                JOptionPane pan2 = new JOptionPane();
+                pan2.showMessageDialog(null, "Désérialisation des 2 Hashmaps", "Sérialisation ", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
   
@@ -159,22 +168,118 @@ public class InterfaceGraphique extends JFrame implements ActionListener {
             }
         }
         
-        
-        
-         // Si la source de l action est l activation du bouton 4
+        // Si la source de l action est l activation du bouton 4
         // Ajout d un fond
         if (e.getSource() == bouton[4]) 
         {
-            //le "PAGE_AXIS" permet d'afficher tout a la suite verticalement
-            //pour tout afficher horizontalement c'est LINE_AXIS
-            setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+            JOptionPane pan2 = new JOptionPane();
+            JOptionPane pan21 = new JOptionPane();
+            
+            
+            String nom = pan2.showInputDialog(null, "Veuillez saisir la clé du fonds que voulez créer : ", JOptionPane.QUESTION_MESSAGE);
+            String montant = pan2.showInputDialog(null, "Veuillez saisir le montant du fonds que voulez créer : ", JOptionPane.QUESTION_MESSAGE);
+            double montant1 = Double.parseDouble(montant);
+        
+            try {
+                portefeuille.rechercheFonds(nom);
+                FondsExistant lol1 = new FondsExistant();
+            } catch (FondsInexistant ex) {
+                try {
+                    portefeuille.ajouterFdansF(nom, montant1);
+                    String instru = pan2.showInputDialog(null, "Veuillez saisir l'instrument dans lequel vous voulez ajouter ce nouveau fond : ", JOptionPane.QUESTION_MESSAGE);
+                    portefeuille.ajouterFdansI(instru, portefeuille.getMapFonds().get(nom));
+                } catch (FondsExistant ex1) {
+                    ex1 = new FondsExistant();
+                   pan21.showMessageDialog(null, "Le fonds n'a pas été créé.", "Fonds déjà existant", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        
+        // Si la source de l action est l activation du bouton 4
+        // Suppression d un fonds
+        if (e.getSource() == bouton[5]) 
+        {
+            JOptionPane pan2 = new JOptionPane();
+            
+            String cleSuppr = pan2.showInputDialog(null, "Veuillez saisir la clé du fonds que voulez supprimer : ", JOptionPane.QUESTION_MESSAGE);
+            portefeuille.supprimerFonds(cleSuppr);
+        }
+        
+        // Si la source de l action est l activation du bouton 4
+        // Ajout d un instrument
+        if (e.getSource() == bouton[6]) 
+        {
+            JOptionPane pan2 = new JOptionPane();
+            JOptionPane pan21 = new JOptionPane();            
+            
+            String cleI = pan2.showInputDialog(null, "Veuillez saisir la clé de l'instrument que voulez créer : ", JOptionPane.QUESTION_MESSAGE);        
+            try {
+                portefeuille.rechercheInstrument(cleI);
+                pan21.showMessageDialog(null, "L'instrument n'a pas été créé.", "Instrument déjà existant", JOptionPane.ERROR_MESSAGE);
+            } catch (InstrumentInexistant ex2) {
+                Instrument tmpInstru = new Instrument(cleI);
+                portefeuille.ajouterIdansI(cleI, tmpInstru);
+            }            
+        }
+        
+        // Si la source de l action est l activation du bouton 4
+        // Suppression d un instrument
+        if (e.getSource() == bouton[7]) 
+        {
+            JOptionPane pan2 = new JOptionPane();
+            
+            String cleSuppr = pan2.showInputDialog(null, "Veuillez saisir la clé de l'instrument que voulez supprimer : ", JOptionPane.QUESTION_MESSAGE);
+            portefeuille.supprimerInstrument(cleSuppr);
+        }
+        
+        if (e.getSource() == bouton[8])
+        {
+            JOptionPane pan2 = new JOptionPane();
+            JOptionPane pan21 = new JOptionPane();
+            String fonds = "";
+            String nom = pan2.showInputDialog(null, "Veuillez saisir la clé du fonds dont vous voulez connaître le pourcentage : ", JOptionPane.QUESTION_MESSAGE);
+            double pourcentage = 0;
+            try {
+                portefeuille.rechercheFonds(nom);
+                
+                Set<String> cles = portefeuille.getMapInstrument().keySet();
+                Iterator<String> it = cles.iterator();
+                String iter = "";
 
-            //Rectangle Informations
-            panajoutf = new JPanel();
-            panajoutf.setLayout(new BoxLayout(panajoutf, BoxLayout.PAGE_AXIS));
-            panajoutf.setBorder(new TitledBorder(null, "Ajout d'un fond", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-            panajoutf.setPreferredSize(new Dimension(this.getWidth(), 300));       
-            panajoutf.setBackground(new Color(187,164,230));
+                while(it.hasNext())
+                {
+                    iter = it.next();
+                    Instrument valeur = portefeuille.getMapInstrument().get(iter);
+                    double cpt = 0;
+                    pourcentage = 0;
+                    if(valeur.rechercherFdansI(nom))
+                    {
+                        // Somme
+                        for(int i=0; i< valeur.getArrayFonds().size();i++)
+                        {
+                            cpt += valeur.getArrayFonds().get(i).getAmount();
+                        }
+                        pourcentage = portefeuille.getMapFonds().get(nom).getAmount();
+                        pourcentage = (pourcentage/cpt)*100;
+                        fonds += "Le pourcentage du fonds " + nom + " dans l'instrument " + iter + " est de : " + pourcentage + "\n";
+                    }
+                }          
+                
+                if(fonds == "")
+                {
+                    pan21.showMessageDialog(null, "Ce fonds n'est dans aucun instrument.", "Problème", JOptionPane.INFORMATION_MESSAGE);;
+                    
+                }
+                else
+                {
+                    pan21.showMessageDialog(null, fonds, "Pourcentage du fonds " + nom, JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+            } catch (FondsInexistant ex) {
+                pan21.showMessageDialog(null, "Le fonds n'a pas été trouvé", "Fonds inexistant", JOptionPane.ERROR_MESSAGE);
+            }
+
+              
         }
         
         if (e.getSource() == bouton[9])
